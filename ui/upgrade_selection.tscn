@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://ui/upgrade_selection.gd" id="1_script"]
+[ext_resource type="Theme" path="res://assets/fonts/ui_theme.tres" id="2_theme"]
+[ext_resource type="Texture2D" path="res://assets/kenney_fantasy-ui-borders/PNG/Default/Border/panel-border-000.png" id="3_frame"]
+[ext_resource type="Texture2D" path="res://assets/kenney_fantasy-ui-borders/PNG/Default/Divider Fade/divider-fade-002.png" id="4_divider"]
+
+[node name="UpgradeSelection" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_script")
+
+[node name="Dim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.043, 0.043, 0.047, 0.88)
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -150.0
+offset_right = 300.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"FramedPanel"
+
+[node name="Border" type="NinePatchRect" parent="Panel"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_frame")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="Margins" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 14
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Margins"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Title" type="Label" parent="Panel/Margins/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+theme_type_variation = &"SectionTitle"
+theme_override_font_sizes/font_size = 19
+text = "UPGRADE_CHOOSE_ONE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Divider" type="TextureRect" parent="Panel/Margins/VBox"]
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_divider")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cards" type="HBoxContainer" parent="Panel/Margins/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 196)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+alignment = 1

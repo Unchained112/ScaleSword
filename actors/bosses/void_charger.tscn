@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://nfpiil770pcq"]
+
+[ext_resource type="PackedScene" path="res://actors/enemies/enemy_base.tscn" id="1_base"]
+[ext_resource type="Script" uid="uid://hcqn5vnc17pt" path="res://actors/bosses/void_charger.gd" id="2_script"]
+[ext_resource type="Shader" uid="uid://bgekg41d1r3po" path="res://shaders/enemy_effect.gdshader" id="3_ffoxf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_boss"]
+radius = 10.049875
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ukt4"]
+resource_local_to_scene = true
+shader = ExtResource("3_ffoxf")
+shader_parameter/key_color = Color(0.13333334, 0.13725491, 0.13725491, 1)
+shader_parameter/key_threshold = 0.03
+shader_parameter/flash_amount = 0.0
+shader_parameter/charge_amount = 0.0
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[node name="VoidCharger" unique_id=1063692575 instance=ExtResource("1_base")]
+script = ExtResource("2_script")
+max_health = 450.0
+move_speed = 0.0
+contact_damage = 0.0
+knockback_resistance = 0.78
+is_boss = true
+boss_name_key = &"BOSS_VOID_CHARGER"
+visual_safe_margin = 14.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_boss")
+
+[node name="VisualRoot" parent="." index="1"]
+scale = Vector2(2.5, 2.5)
+
+[node name="Sprite2D" parent="VisualRoot" index="0"]
+material = SubResource("ShaderMaterial_8ukt4")
+region_rect = Rect2(104, 0, 8, 8)
+
+[node name="HealthBar" parent="." index="2"]
+visible = false

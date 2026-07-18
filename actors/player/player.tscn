@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://crcv6vp1im0kr"]
+
+[ext_resource type="Script" path="res://actors/player/player.gd" id="1_player"]
+[ext_resource type="Texture2D" uid="uid://m55jusvug8t8" path="res://assets/colored_tilemap_packed.png" id="2_atlas"]
+[ext_resource type="Shader" uid="uid://b8bes2mjb7ht" path="res://shaders/color_replacer.gdshader" id="2_lsqbn"]
+[ext_resource type="PackedScene" uid="uid://d1du67u44c7nw" path="res://weapons/sword/sword.tscn" id="3_sword"]
+[ext_resource type="Script" path="res://ui/player_charge_meter.gd" id="4_charge_meter"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_player"]
+radius = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vpik0"]
+shader = ExtResource("2_lsqbn")
+shader_parameter/color_1 = Color(0.13333334, 0.13725491, 0.13725491, 1)
+shader_parameter/color_replace_1 = Color(0, 0, 0, 0)
+shader_parameter/color_threshold_1 = 0.01
+shader_parameter/color_2 = Color(1, 1, 1, 1)
+shader_parameter/color_replace_2 = Color(0, 0, 0, 1)
+shader_parameter/color_threshold_2 = 0.01
+shader_parameter/color_3 = Color(1, 1, 1, 1)
+shader_parameter/color_replace_3 = Color(0, 0, 0, 1)
+shader_parameter/color_threshold_3 = 0.01
+
+[node name="Player" type="CharacterBody2D" unique_id=1727893391]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1993509021]
+shape = SubResource("CircleShape2D_player")
+
+[node name="VisualRoot" type="Node2D" parent="." unique_id=1473489943]
+z_index = 20
+
+[node name="PlayerSprite" type="Sprite2D" parent="VisualRoot" unique_id=904909868]
+material = SubResource("ShaderMaterial_vpik0")
+texture = ExtResource("2_atlas")
+region_enabled = true
+region_rect = Rect2(32, 0, 8, 8)
+
+[node name="SwordPivot" parent="." unique_id=1712691571 instance=ExtResource("3_sword")]
+
+[node name="ChargeMeter" type="Node2D" parent="."]
+script = ExtResource("4_charge_meter")

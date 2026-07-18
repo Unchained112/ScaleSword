@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dbqqvfal4elut"]
+
+[ext_resource type="PackedScene" path="res://actors/enemies/enemy_base.tscn" id="1_base"]
+[ext_resource type="Script" uid="uid://b0wbfptp8k1p6" path="res://actors/bosses/core_clone.gd" id="2_script"]
+[ext_resource type="Shader" uid="uid://bgekg41d1r3po" path="res://shaders/enemy_effect.gdshader" id="3_i838x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_clone"]
+radius = 7.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qahxg"]
+resource_local_to_scene = true
+shader = ExtResource("3_i838x")
+shader_parameter/key_color = Color(0.13333334, 0.13725491, 0.13725491, 1)
+shader_parameter/key_threshold = 0.03
+shader_parameter/flash_amount = 0.0
+shader_parameter/charge_amount = 0.0
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[node name="CoreClone" unique_id=1601969765 instance=ExtResource("1_base")]
+script = ExtResource("2_script")
+dash_length = 52.0
+dash_speed = 180.0
+dash_damage = 15.0
+windup_duration = 0.48
+recovery_duration = 0.42
+dash_cooldown = 1.15
+trigger_distance = 110.0
+maximum_charge_scale = 1.18
+segmented_telegraph = false
+path_width = 8.0
+max_health = 120.0
+move_speed = 38.0
+contact_damage = 9.0
+knockback_resistance = 0.35
+visual_safe_margin = 11.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_clone")
+
+[node name="VisualRoot" parent="." index="1"]
+scale = Vector2(1.9, 1.9)
+
+[node name="Sprite2D" parent="VisualRoot" index="0"]
+material = SubResource("ShaderMaterial_qahxg")
+region_rect = Rect2(88, 0, 8, 8)

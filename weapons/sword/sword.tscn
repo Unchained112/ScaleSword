@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://d1du67u44c7nw"]
+
+[ext_resource type="Script" path="res://weapons/sword/sword.gd" id="1_sword"]
+[ext_resource type="Texture2D" uid="uid://m55jusvug8t8" path="res://assets/colored_tilemap_packed.png" id="2_atlas"]
+[ext_resource type="Shader" uid="uid://b8bes2mjb7ht" path="res://shaders/color_replacer.gdshader" id="2_kg2df"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_304gn"]
+shader = ExtResource("2_kg2df")
+shader_parameter/color_1 = Color(0.13333334, 0.13725491, 0.13725491, 1)
+shader_parameter/color_replace_1 = Color(0, 0, 0, 0)
+shader_parameter/color_threshold_1 = 0.01
+shader_parameter/color_2 = Color(1, 1, 1, 1)
+shader_parameter/color_replace_2 = Color(0, 0, 0, 1)
+shader_parameter/color_threshold_2 = 0.01
+shader_parameter/color_3 = Color(1, 1, 1, 1)
+shader_parameter/color_replace_3 = Color(0, 0, 0, 1)
+shader_parameter/color_threshold_3 = 0.01
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sword"]
+resource_local_to_scene = true
+size = Vector2(10, 4)
+
+[node name="SwordPivot" type="Node2D" unique_id=951052405]
+script = ExtResource("1_sword")
+
+[node name="VisualRoot" type="Node2D" parent="." unique_id=153747415]
+z_index = 40
+
+[node name="SwordSprite" type="Sprite2D" parent="VisualRoot" unique_id=1805098525]
+material = SubResource("ShaderMaterial_304gn")
+position = Vector2(6, 0)
+rotation = 0.7853982
+texture = ExtResource("2_atlas")
+region_enabled = true
+region_rect = Rect2(48, 32, 8, 8)
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=838798798]
+position = Vector2(5.5, 0)
+collision_layer = 8
+collision_mask = 20
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=184764703]
+shape = SubResource("RectangleShape2D_sword")

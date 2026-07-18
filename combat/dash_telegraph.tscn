@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cn02p4h2urbom"]
+
+[ext_resource type="Script" uid="uid://clo7v6xxyqhmq" path="res://combat/dash_telegraph.gd" id="1_telegraph"]
+
+[node name="DashTelegraph" type="Node2D" unique_id=1406576321]
+z_index = 6
+script = ExtResource("1_telegraph")

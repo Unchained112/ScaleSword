@@ -1,0 +1,245 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://ui/run_hud.gd" id="1_script"]
+[ext_resource type="Theme" path="res://assets/fonts/ui_theme.tres" id="2_theme"]
+[ext_resource type="Texture2D" path="res://assets/kenney_fantasy-ui-borders/PNG/Default/Border/panel-border-009.png" id="3_hud_frame"]
+[ext_resource type="Texture2D" path="res://assets/kenney_fantasy-ui-borders/PNG/Default/Border/panel-border-000.png" id="4_boss_frame"]
+
+[sub_resource type="StyleBoxFlat" id="Style_bar_bg"]
+bg_color = Color(0.043, 0.043, 0.047, 0.96)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.76, 0.76, 0.79, 0.9)
+
+[sub_resource type="StyleBoxFlat" id="Style_hp_fill"]
+bg_color = Color(0.922, 0.337, 0.294, 1)
+
+[sub_resource type="StyleBoxFlat" id="Style_dodge_fill"]
+bg_color = Color(0.365, 0.871, 0.529, 1)
+
+[sub_resource type="StyleBoxFlat" id="Style_boss_fill"]
+bg_color = Color(0.549, 0.247, 0.365, 1)
+
+[node name="RunHUD" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_script")
+
+[node name="PlayerPanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 190.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_type_variation = &"HudPanel"
+
+[node name="Border" type="NinePatchRect" parent="PlayerPanel"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_hud_frame")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Margins" type="MarginContainer" parent="PlayerPanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 6
+
+[node name="VBox" type="VBoxContainer" parent="PlayerPanel/Margins"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="HPStack" type="Control" parent="PlayerPanel/Margins/VBox"]
+custom_minimum_size = Vector2(158, 17)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HPBar" type="ProgressBar" parent="PlayerPanel/Margins/VBox/HPStack"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("Style_bar_bg")
+theme_override_styles/fill = SubResource("Style_hp_fill")
+show_percentage = false
+
+[node name="HPLabel" type="Label" parent="PlayerPanel/Margins/VBox/HPStack"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"HudLabel"
+theme_override_font_sizes/font_size = 11
+text = "HP  100 / 100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DodgeRow" type="HBoxContainer" parent="PlayerPanel/Margins/VBox"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 7
+
+[node name="DodgeBar" type="ProgressBar" parent="PlayerPanel/Margins/VBox/DodgeRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(72, 9)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+max_value = 1.0
+value = 1.0
+theme_override_styles/background = SubResource("Style_bar_bg")
+theme_override_styles/fill = SubResource("Style_dodge_fill")
+show_percentage = false
+
+[node name="DodgeLabel" type="Label" parent="PlayerPanel/Margins/VBox/DodgeRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_type_variation = &"HudSecondary"
+text = "HUD_DODGE"
+vertical_alignment = 1
+
+[node name="RoundPanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 12.0
+offset_right = 628.0
+offset_bottom = 66.0
+mouse_filter = 2
+theme_type_variation = &"HudPanel"
+
+[node name="Border" type="NinePatchRect" parent="RoundPanel"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_hud_frame")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Margins" type="MarginContainer" parent="RoundPanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 6
+
+[node name="VBox" type="VBoxContainer" parent="RoundPanel/Margins"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+
+[node name="RoundLabel" type="Label" parent="RoundPanel/Margins/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"HudLabel"
+theme_override_font_sizes/font_size = 13
+text = "ROUND 1 / 13"
+horizontal_alignment = 2
+
+[node name="MetaRow" type="HBoxContainer" parent="RoundPanel/Margins/VBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RemainingLabel" type="Label" parent="RoundPanel/Margins/VBox/MetaRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_type_variation = &"HudSecondary"
+theme_override_font_sizes/font_size = 10
+text = "ENEMIES  0"
+
+[node name="TimeLabel" type="Label" parent="RoundPanel/Margins/VBox/MetaRow"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"HudSecondary"
+theme_override_font_sizes/font_size = 10
+text = "00:00"
+horizontal_alignment = 2
+
+[node name="BossPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -54.0
+offset_right = 170.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"HudPanel"
+
+[node name="Border" type="NinePatchRect" parent="BossPanel"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_boss_frame")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="Margins" type="MarginContainer" parent="BossPanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 6
+
+[node name="VBox" type="VBoxContainer" parent="BossPanel/Margins"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+
+[node name="BossName" type="Label" parent="BossPanel/Margins/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"HudLabel"
+theme_override_font_sizes/font_size = 12
+text = "BOSS"
+horizontal_alignment = 1
+
+[node name="BossBar" type="ProgressBar" parent="BossPanel/Margins/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("Style_bar_bg")
+theme_override_styles/fill = SubResource("Style_boss_fill")
+show_percentage = false

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dinja0hlchxk2"
+path="res://.godot/imported/Week 1 - Retro Lounge BASE.ogg-7eb87260b3076c0b6ff9a956f98cac3b.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/Week 1 - Retro Lounge BASE.ogg"
+dest_files=["res://.godot/imported/Week 1 - Retro Lounge BASE.ogg-7eb87260b3076c0b6ff9a956f98cac3b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

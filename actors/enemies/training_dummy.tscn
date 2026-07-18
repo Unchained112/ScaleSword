@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://bd6lda4cyr4of"]
+
+[ext_resource type="Script" uid="uid://brabbcn166147" path="res://actors/enemies/training_dummy.gd" id="1_dummy"]
+[ext_resource type="Texture2D" uid="uid://m55jusvug8t8" path="res://assets/colored_tilemap_packed.png" id="2_atlas"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dummy"]
+radius = 3.0
+
+[sub_resource type="Shader" id="Shader_flash"]
+code = "shader_type canvas_item;
+uniform float flash_amount : hint_range(0.0, 1.0) = 0.0;
+
+// 色彩替换
+uniform vec4 color_1 : source_color = vec4(1.0);
+uniform vec4 color_replace_1 : source_color;
+uniform float color_threshold_1 : hint_range(0.0, 1.0, 0.001) = 0.01;
+
+uniform vec4 color_2 : source_color = vec4(1.0);
+uniform vec4 color_replace_2 : source_color;
+uniform float color_threshold_2 : hint_range(0.0, 1.0, 0.001) = 0.01;
+
+uniform vec4 color_3 : source_color = vec4(1.0);
+uniform vec4 color_replace_3 : source_color;
+uniform float color_threshold_3 : hint_range(0.0, 1.0, 0.001) = 0.01;
+
+void fragment() {
+    vec4 color = texture(TEXTURE, UV);
+    vec4 flashed = vec4(vec3(1.0), color.a);
+
+	// 颜色替换
+	float dis_color_1 = length(color.rgb - color_1.rgb);
+	float dis_color_2 = length(color.rgb - color_2.rgb);
+	float dis_color_3 = length(color.rgb - color_3.rgb);
+	if (dis_color_1 < color_threshold_1) {
+		color = color_replace_1;
+	} else if (dis_color_2 < color_threshold_2) {
+		color = color_replace_2;
+	} else if (dis_color_3 < color_threshold_3) {
+		color = color_replace_3;
+	}
+
+    COLOR = mix(color, flashed, flash_amount);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_flash"]
+resource_local_to_scene = true
+shader = SubResource("Shader_flash")
+shader_parameter/flash_amount = 0.0
+shader_parameter/color_1 = Color(0.015686275, 0.019607844, 0.019607844, 1)
+shader_parameter/color_replace_1 = Color(0, 0, 0, 0)
+shader_parameter/color_threshold_1 = 0.250000011875
+shader_parameter/color_2 = Color(1, 1, 1, 1)
+shader_parameter/color_replace_2 = Color(0, 0, 0, 1)
+shader_parameter/color_threshold_2 = 0.01
+shader_parameter/color_3 = Color(1, 1, 1, 1)
+shader_parameter/color_replace_3 = Color(0, 0, 0, 1)
+shader_parameter/color_threshold_3 = 0.01
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_health_bg"]
+bg_color = Color(0.08, 0.09, 0.12, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.03, 0.03, 0.04, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_health_fill"]
+bg_color = Color(0.85, 0.2, 0.22, 1)
+
+[node name="TrainingDummy" type="CharacterBody2D" unique_id=1259668012]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_dummy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=981422554]
+shape = SubResource("CircleShape2D_dummy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1445784956]
+z_index = 10
+material = SubResource("ShaderMaterial_flash")
+texture = ExtResource("2_atlas")
+region_enabled = true
+region_rect = Rect2(48, 8, 8, 8)
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1224798165]
+offset_left = -7.0
+offset_top = -8.0
+offset_right = 7.0
+offset_bottom = -5.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_health_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_health_fill")
+show_percentage = false

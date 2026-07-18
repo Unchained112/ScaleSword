@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://actors/enemies/enemy_base.tscn" id="1_base"]
+[ext_resource type="Script" path="res://actors/enemies/charger.gd" id="2_script"]
+
+[node name="Charger" instance=ExtResource("1_base")]
+script = ExtResource("2_script")
+max_health = 60.0
+move_speed = 20.0
+contact_damage = 10.0
+knockback_resistance = 0.15
+
+[node name="Sprite2D" parent="VisualRoot" index="0"]
+region_rect = Rect2(64, 8, 8, 8)

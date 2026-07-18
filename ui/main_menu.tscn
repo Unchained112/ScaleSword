@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://cniv28ubdgy2e"]
+
+[ext_resource type="Script" uid="uid://0l3iu5uwmjju" path="res://ui/main_menu.gd" id="1_menu"]
+[ext_resource type="Theme" uid="uid://d2fowcnb0r72" path="res://assets/fonts/ui_theme.tres" id="2_theme"]
+[ext_resource type="Texture2D" uid="uid://cbujg7p3l1bsl" path="res://assets/kenney_fantasy-ui-borders/PNG/Default/Border/panel-border-000.png" id="3_frame"]
+[ext_resource type="Texture2D" uid="uid://d3c5qwfafo0ou" path="res://assets/kenney_fantasy-ui-borders/PNG/Default/Divider Fade/divider-fade-002.png" id="4_divider"]
+
+[node name="MainMenu" type="Control" unique_id=946304604]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_menu")
+
+[node name="Background" type="ColorRect" parent="." unique_id=94353735]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.133333, 0.137255, 0.137255, 1)
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=1303439176]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"FramedPanel"
+
+[node name="Border" type="NinePatchRect" parent="Panel" unique_id=265155732]
+layout_mode = 2
+texture = ExtResource("3_frame")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="Margins" type="MarginContainer" parent="Panel" unique_id=1910440563]
+layout_mode = 2
+theme_override_constants/margin_left = 90
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 90
+theme_override_constants/margin_bottom = 30
+
+[node name="Content" type="VBoxContainer" parent="Panel/Margins" unique_id=1371825140]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Title" type="Label" parent="Panel/Margins/Content" unique_id=535932476]
+layout_mode = 2
+theme_type_variation = &"HeroTitle"
+text = "SCALESWORD"
+horizontal_alignment = 1
+
+[node name="Divider" type="TextureRect" parent="Panel/Margins/Content" unique_id=1856453722]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_divider")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StartRow" type="CenterContainer" parent="Panel/Margins/Content" unique_id=1448485289]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="Panel/Margins/Content/StartRow" unique_id=997918308]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "MENU_START"
+
+[node name="QuitRow" type="CenterContainer" parent="Panel/Margins/Content" unique_id=1073561069]
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="Panel/Margins/Content/QuitRow" unique_id=592565887]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 34)
+layout_mode = 2
+text = "MENU_QUIT"
+
+[node name="Controls" type="Label" parent="Panel/Margins/Content" unique_id=2080080238]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme_type_variation = &"SecondaryLabel"
+theme_override_font_sizes/font_size = 11
+text = "MENU_CONTROLS"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LanguageButton" type="Button" parent="." unique_id=1196430176]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -108.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = 54.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 13
+text = "中文"

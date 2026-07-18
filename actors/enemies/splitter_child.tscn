@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://actors/enemies/enemy_base.tscn" id="1_base"]
+[ext_resource type="Script" path="res://actors/enemies/splitter_child.gd" id="2_script"]
+
+[node name="SplitterChild" instance=ExtResource("1_base")]
+script = ExtResource("2_script")
+max_health = 18.0
+move_speed = 45.0
+contact_damage = 6.0
+
+[node name="VisualRoot" parent="." index="1"]
+scale = Vector2(0.72, 0.72)
+
+[node name="Sprite2D" parent="VisualRoot" index="0"]
+region_rect = Rect2(80, 8, 8, 8)
+
+[node name="HealthBar" parent="." index="2"]
+offset_left = -4.0
+offset_top = -6.0
+offset_right = 4.0
+offset_bottom = -5.0
