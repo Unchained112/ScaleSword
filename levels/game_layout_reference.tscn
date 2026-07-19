@@ -4,55 +4,65 @@
 
 [node name="GameLayoutReference" type="Node2D" unique_id=487017436]
 
+[node name="ColoredTilemapPacked" type="Sprite2D" parent="." unique_id=2095961142]
+position = Vector2(165, 92)
+scale = Vector2(44.125, 26.125)
+texture = ExtResource("1_m637p")
+region_enabled = true
+region_rect = Rect2(8, 8, 8, 8)
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=940705789]
 position = Vector2(160, 91)
 zoom = Vector2(2, 2)
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=1763784517]
-position = Vector2(161, 90)
+position = Vector2(109, 111)
 texture = ExtResource("1_m637p")
 region_enabled = true
 region_rect = Rect2(32, 0, 8, 8)
 
 [node name="SwordSprite" type="Sprite2D" parent="." unique_id=1198419034]
-position = Vector2(147, 90)
-rotation = -0.7846742
+position = Vector2(134, 94.99999)
+scale = Vector2(4.6874986, 3.5624995)
 texture = ExtResource("1_m637p")
 region_enabled = true
 region_rect = Rect2(48, 32, 8, 8)
 
 [node name="Enemy1Sprite" type="Sprite2D" parent="." unique_id=1190044401]
-position = Vector2(174, 117)
+position = Vector2(169, 81)
 texture = ExtResource("1_m637p")
 region_enabled = true
 region_rect = Rect2(48, 8, 8, 8)
 
 [node name="Enemy2Sprite" type="Sprite2D" parent="." unique_id=1628697558]
-position = Vector2(141, 134)
+position = Vector2(183, 103)
 texture = ExtResource("1_m637p")
 region_enabled = true
 region_rect = Rect2(88, 8, 8, 8)
 
 [node name="EnemyBullet" type="Sprite2D" parent="." unique_id=233288877]
-position = Vector2(99, 144)
+position = Vector2(132, 70)
 texture = ExtResource("1_m637p")
 region_enabled = true
 region_rect = Rect2(24, 64, 8, 8)
 
 [node name="Boss1Sprite" type="Sprite2D" parent="." unique_id=241051217]
-position = Vector2(77, 94)
+position = Vector2(146.5, 57.5)
+scale = Vector2(2.375, 2.375)
 texture = ExtResource("1_m637p")
 region_enabled = true
 region_rect = Rect2(104, 0, 8, 8)
 
 [node name="Boss2Sprite" type="Sprite2D" parent="." unique_id=1326396666]
-position = Vector2(123, 110)
+position = Vector2(191.5, 66.5)
+scale = Vector2(2.375, 2.375)
 texture = ExtResource("1_m637p")
 region_enabled = true
 region_rect = Rect2(88, 0, 8, 8)
 
 [node name="Boss3Sprite" type="Sprite2D" parent="." unique_id=1079754643]
-position = Vector2(224, 69)
+position = Vector2(216, 97)
+scale = Vector2(2.125, 2.125)
 texture = ExtResource("1_m637p")
 region_enabled = true
 region_rect = Rect2(72, 0, 8, 8)
